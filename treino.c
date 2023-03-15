@@ -1,40 +1,69 @@
-// #include <stdio.h>
-
-// int main(){
-
-//     int numero_secreto = 21;
-
-//     int chute;
-
-//     printf("Chute um numero: ");
-//     scanf("%d", &chute);
-//     printf("O numero chutado foi: %d", chute);
-
-//     return 0;
-
-// }
-
-
-
-
-// Desafio
-
 #include <stdio.h>
 
 int main(){
 
-    int number_one;
-    int number_two;
+    int numero_secreto = 21;
 
-    printf("Digite o primeiro numero ");
-    scanf("%d", &number_one);
+    int chute;
+    int chutes = 0;
+    int tentativas = 5;
 
-    printf("Digite o segundo numero");
-    scanf("%d", &number_two);
+    printf("Voce tem %d tentativas para vencer\n", tentativas);
 
-    int result = number_one * number_two;
+    // com o wihle *****
+    while (tentativas > 0)
+    {
 
-    printf("O resultado da multiplicacao do numero %d e %d foi: %d", number_one, number_two, result);
+        if (chutes == 0){
+            printf("Chute um numero: ");
+            scanf("%d", &chute);
+            chutes++;
+        }else{
+            printf("Chute outro numero: ");
+            scanf("%d", &chute);
+            tentativas--;
+            printf("Voce tem %d tentativas \n", tentativas);
+            chutes++;
+        };
+
+        int chute_maior_que_secreto = (chute > numero_secreto);
+
+        int acertou = (chute == numero_secreto);
+
+        if(acertou){
+            if (chutes == 0){
+                printf("Parabens! voce ganhou com %d tentativas\n", chutes);
+            }else{
+                printf("Parabens! voce ganhou com %d tentativas\n", chutes);
+            }
+            break;
+        }else{
+            printf("Voce errou mas nao desanime!!\n");
+            printf("Seu chute foi %d \n", chute);
+
+            if (chute_maior_que_secreto){
+                printf("Chute maior que o numero secreto\n");
+            }else{
+                printf("Chute menor que o numero secreto\n");
+            };
+            printf("*****************************\n");
+        };
+
+        if (tentativas == 0){
+            printf("Infelizmente suas tentativas acabaram\n");
+
+            char escolha;
+            printf("Deseja continuar? [S ou N]\n"); 
+            scanf("%s", &escolha);
+
+            if (escolha == 'S' || escolha == 's'){
+                tentativas = 5;
+            }else{
+                printf("Obrigado por jogar\n");
+            };
+        }
+
+    };
 
 }
 
